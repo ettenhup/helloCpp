@@ -1,4 +1,3 @@
-// erasing from map
 #include <iostream>
 
 class A {
@@ -21,6 +20,17 @@ public:
 	}
 };
 
+void test(A* a){
+	printf(" a \n");
+}
+void test(B* a){
+	printf(" b \n");
+}
+
+void test_test(A* a){
+	test(a);
+}
+
 int main ()
 {
 	A a1(3);
@@ -33,6 +43,19 @@ int main ()
 	a1.test(b1);
 	b1.test(b2);
 	b2.test(b1);
+	test(&a1);
+	test(&a2);
+	test(&b1);
+	test(&b2);
+	A* p = &b1;
+	test(p);
+	test_test(&b1);
+	if(typeid(*p) == typeid(A)){
+		printf(" p is A\n");
+	}
+	if(typeid(*p) == typeid(B)){
+		printf(" p is B\n");
+	}
 	return 0;
 }
 
